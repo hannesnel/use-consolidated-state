@@ -1,6 +1,6 @@
 {
   "name": "use-consolidated-state",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A state hook which combines multiple states into a single object with explicit setters and values",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
