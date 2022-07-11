@@ -6,7 +6,7 @@ type ConsolidatedState<T> = {
   setState: (state: Partial<T>) => void;
 } & T;
 
-export default function useConsolidatedState<T>(
+export default function useConsolidatedState<T extends Record<string, any>>(
   initialState: T
 ): ConsolidatedState<T> {
   const [consolidatedState, setConsolidatedState] = useState<T>(initialState);
@@ -20,10 +20,15 @@ export default function useConsolidatedState<T>(
       return {
         ...acc,
         [functionCase(key)]: (value: any) =>
-          setConsolidatedState((prev) => ({
-            ...prev,
-            [key]: value,
-          })),
+          setConsolidatedState((prev) => {
+            if (prev[key] === value) {
+              return prev;
+            }
+            return {
+              ...prev,
+              [key]: value,
+            };
+          }),
       };
     },
     {} as ConsolidatedState<T>
