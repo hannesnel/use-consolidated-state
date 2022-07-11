@@ -1,22 +1,17 @@
-name: Publish Package to npmjs
-on:
-  release:
-    types: [created]
+name: CI
+on: push
 jobs:
-  build:
+  test:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
+          node-version: '14'
+      - run: npm install
       - run: npm install react @types/react
       - run: npm run build
-      - run: npm run test
+      - run: yarn run test
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
