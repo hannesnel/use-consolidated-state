@@ -15,7 +15,7 @@
     "url": "https://github.com/hannesnel/use-consolidated-state/issues"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/hannesnel"
   },
   "homepage": "https://github.com/hannesnel/use-consolidated-state#readme",
   "keywords": [
