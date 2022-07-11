@@ -1,8 +1,12 @@
 {
   "name": "use-consolidated-state",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A state hook which combines multiple states into a single object with explicit setters and values",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "build": "rm -rf build/* && tsc",
     "test": "jest --passWithNoTests"
@@ -24,10 +28,10 @@
   "author": "Hannes Nel <nel.jpj@gmail.com>, Pete Redhead <peteredhead@googlemail.com>",
   "license": "ISC",
   "peerDependencies": {
-    "@types/react": "^16.8.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@types/react": "^16.8.0",
     "jest": "^28.1.2",
     "ts-jest": "^28.0.5",
     "typescript": "^4.7.4"

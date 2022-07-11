@@ -10,7 +10,6 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm install react @types/react
       - run: npm run build
       - run: npm run test
       - run: npm publish
