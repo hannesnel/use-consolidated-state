@@ -1,0 +1,32 @@
+{
+  "name": "use-consolidated-state",
+  "version": "0.0.1",
+  "description": "A state hook which combines multiple states into a single object with explicit setters and values",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannesnel/use-consolidated-state"
+  },
+  "bugs": {
+    "url": "https://github.com/hannesnel/use-consolidated-state/issues"
+  },
+  "homepage": "https://github.com/hannesnel/use-consolidated-state#readme",
+  "keywords": [
+    "react",
+    "hooks",
+    "usestate",
+    "state"
+  ],
+  "author": "Hannes Nel <nel.jpj@gmail.com>, Pete Redhead <peteredhead@googlemail.com>",
+  "license": "ISC",
+  "peerDependencies": {
+    "@types/react": "^16.8.0",
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
