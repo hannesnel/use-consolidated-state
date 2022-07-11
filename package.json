@@ -14,6 +14,9 @@
   "bugs": {
     "url": "https://github.com/hannesnel/use-consolidated-state/issues"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "homepage": "https://github.com/hannesnel/use-consolidated-state#readme",
   "keywords": [
     "react",
