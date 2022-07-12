@@ -28,11 +28,15 @@
   "author": "Hannes Nel <nel.jpj@gmail.com>, Pete Redhead <peteredhead@googlemail.com>",
   "license": "ISC",
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^28.1.4",
     "@types/react": "^16.8.0",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "ts-jest": "^28.0.5",
     "typescript": "^4.7.4"
   }
