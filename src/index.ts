@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-type ConsolidatedState<T> = {
-  [P in keyof T as `set${Capitalize<string & P>}`]: (value: T[P]) => void;
+type ConsolidatedState<T, R = Required<T>> = {
+  [P in keyof R as `set${Capitalize<string & P>}`]: (value: R[P] | ((state: R[P]) => R[P])) => void;
 } & {
-  setState: (state: Partial<T>) => void;
+  setState: (state: Partial<T> | ((state: T) => T)) => void;
 } & T;
 
 export default function useConsolidatedState<T extends Record<string, any>>(
@@ -21,8 +21,11 @@ export default function useConsolidatedState<T extends Record<string, any>>(
         ...acc,
         [functionCase(key)]: (value: any) =>
           setConsolidatedState((prev) => {
-            if (prev[key] === value) {
-              return prev;
+            if (typeof value === 'function') {
+              return {
+                ...prev,
+                [key]: value(prev[key])
+              }
             }
             return {
               ...prev,
@@ -34,11 +37,18 @@ export default function useConsolidatedState<T extends Record<string, any>>(
     {} as ConsolidatedState<T>
   );
 
-  const setState = (state: Partial<T>) =>
+  const setState = (state: Partial<T> | ((state: T) => T)) => {
+    if (typeof state === 'function') {
+      setConsolidatedState((prev) => ({
+        ...prev,
+        ...state(prev)
+      }))
+    }
     setConsolidatedState((prev) => ({
       ...prev,
       ...state,
     }));
+  };
 
   return {
     ...consolidatedState,
