@@ -1,6 +1,12 @@
 # use-consolidated-state
 A state hook which combines multiple states into a single object with explicit setters and values for each of the values tracked in the object.
 
+## Installation
+```bash
+npm install use-consolidated-state
+```
+React 16.9.0 is specified as a peer dependency, make sure you have at least this version for you project.
+
 ## Motivation
 Often in a component we want to track more than one value as state, which leads us to multiple lines like this:
 ```typescript
@@ -41,12 +47,18 @@ import useConsolidatedState from "use-consolidated-state";
 interface DemoState {
   name: string;
   isSquare: boolean;
+  height: number;
 }
 
 export default () => {
   // Note each of the keys and associated setters, along with setState
-  const { isSquare, name, setIsSquare, setName, setState } =
-    useConsolidatedState<DemoState>({
+  const { 
+    isSquare,    // individually use tracked isSquare
+    setIsSquare, // individually set isSquare
+    name,        // individually use tracked name
+    setName,     // individually set name
+    setState     // set partial/multiple keys in the state object
+  } = useConsolidatedState<DemoState>({
       height: 1,
       isSquare: undefined,
       name: undefined,
@@ -72,7 +84,7 @@ export default () => {
       </div>
       <div>
         <button
-          onClick={() =>
+          onClick={() => 
             setState({
               name: "multiple",
               isSquare: false,
