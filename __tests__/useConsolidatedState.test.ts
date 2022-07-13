@@ -4,13 +4,16 @@ import useConsolidatedState from '../src';
 describe("useConsolidatedState", () => {
   it("should update state for a single key", () => {
     const name = "Albert";
-    const { result } = renderHook(() => useConsolidatedState({
-      name
+    const { result } = renderHook(() => useConsolidatedState<{ name: string, age?: number }>({
+      name,
+      age: undefined
     }));
     act(() => {
+      result.current.setAge(12);
       result.current.setName(name);
     });
     expect(result.current.name).toBe(name);
+    expect(result.current.age).toBe(12);
   });
 
   it("should update state for a single key with callback", () => {
