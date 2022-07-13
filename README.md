@@ -29,10 +29,10 @@ const setAnotherState = (value) => setState((previous) => ({
 }));
 ...
 ```
-This works, but requires us to write more boilerplate.
+This works, but requires us to write more boilerplate code.
 
 ## Solution
-```useConsolidatedState``` helps us by exporting all the properties of the object as state, along with setters and a 'global' set for partial/bulk updates.
+```useConsolidatedState``` helps us by exporting all the properties of the object as state, along with setters and a setState setter for partial/bulk updates, which is similar to the legacy setState of react class components.
 ## Usage
 ```javascript
 import React from "react";
@@ -44,11 +44,20 @@ interface DemoState {
 }
 
 export default () => {
+  // Note each of the keys and associated setters, along with setState
   const { isSquare, name, setIsSquare, setName, setState } =
     useConsolidatedState<DemoState>({
       height: 1,
       isSquare: undefined,
       name: undefined,
+    });
+
+  // or: note that initial state should not contain keys with undefined values if no type is specified
+  const { isSquare, name, setIsSquare, setName, setState } =
+    useConsolidatedState({
+      height: 1,
+      isSquare: true,
+      name: "Imposter",
     });
 
   return (
@@ -78,3 +87,6 @@ export default () => {
 };
 
 ```
+
+This is still a young project, feel free to get in touch for any feature requests or issues.
+Happy coding
